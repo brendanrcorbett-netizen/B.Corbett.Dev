@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Plumbing Solutions - Professional Plumbing Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .emergency-banner {
+            background: #dc2626;
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .emergency-banner a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 1rem;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .cta-nav {
+            background: #2563eb;
+            color: white !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-nav:hover {
+            background: #1d4ed8;
+            color: white !important;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #2563eb;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .trust-badges {
+            background: #f8fafc;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-icon {
+            font-size: 2rem;
+            color: #2563eb;
+        }
+
+        .badge-text {
+            font-weight: 600;
+            color: #333;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: #1e293b;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .why-choose {
+            background: #f8fafc;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            padding: 4rem 2rem;
+        }
+
+        .contact-section h2 {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-areas {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .areas {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .area-tag {
+            background: #e0e7ff;
+            color: #2563eb;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-banner">
+        🚨 24/7 Emergency Service Available - <a href="tel:555-123-4567">Call (555) 123-4567</a>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <span>💧</span> Swift Plumbing
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-choose">Why Choose Us</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact" class="cta-nav">Get a Quote</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Professional Plumbing Services You Can Trust</h1>
+        <p>Fast, Reliable, and Affordable Solutions for Your Home or Business</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">Schedule Service</a>
+            <a href="tel:555-123-4567" class="btn-secondary">Call Now: (555) 123-4567</a>
+        </div>
+    </div>
+
+    <div class="trust-badges">
+        <div class="badges">
+            <div class="badge">
+                <div class="badge-icon">✓</div>
+                <div class="badge-text">Licensed & Insured</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">⭐</div>
+                <div class="badge-text">500+ 5-Star Reviews</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">🕐</div>
+                <div class="badge-text">24/7 Emergency Service</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">💯</div>
+                <div class="badge-text">Satisfaction Guaranteed</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p class="section-subtitle">Comprehensive plumbing solutions for every need</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚰</div>
+                <h3>Emergency Repairs</h3>
+                <p>Burst pipes, leaks, and urgent plumbing issues resolved quickly. We're available 24/7 to handle your emergency.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Drain Cleaning</h3>
+                <p>Professional drain cleaning and unclogging services using advanced equipment to clear even the toughest blockages.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚿</div>
+                <h3>Fixture Installation</h3>
+                <p>Expert installation of faucets, sinks, toilets, showers, and all plumbing fixtures with precision and care.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💧</div>
+                <h3>Water Heater Service</h3>
+                <p>Installation, repair, and maintenance of water heaters. We work with all brands and models.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Pipe Repair & Replacement</h3>
+                <p>Modern pipe repair solutions including repiping, leak detection, and preventative maintenance.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Inspections & Maintenance</h3>
+                <p>Thorough plumbing inspections and preventative maintenance to catch problems before they start.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose" class="why-choose">
+        <h2>Why Choose Swift Plumbing?</h2>
+        <p class="section-subtitle">Experience the difference of working with true professionals</p>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Response</h3>
+                <p>Same-day service available with rapid response times for emergencies</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>Fair Pricing</h3>
+                <p>Transparent, upfront pricing with no hidden fees or surprise charges</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍🔧</div>
+                <h3>Expert Team</h3>
+                <p>Highly trained, certified plumbers with years of experience</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Guaranteed Work</h3>
+                <p>100% satisfaction guarantee on all our services and repairs</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="service-areas">
+        <h2>Areas We Serve</h2>
+        <div class="areas">
+            <span class="area-tag">Downtown</span>
+            <span class="area-tag">North Side</span>
+            <span class="area-tag">South Bay</span>
+            <span class="area-tag">East Valley</span>
+            <span class="area-tag">West Hills</span>
+            <span class="area-tag">Suburban Areas</span>
+        </div>
+    </div>
+
+    <section id="testimonials" class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <p class="section-subtitle">Don't just take our word for it</p>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Swift Plumbing saved the day! We had a major leak on a Sunday evening and they were at our house within an hour. Professional, efficient, and reasonably priced. Highly recommend!"</p>
+                <div class="testimonial-author">- Sarah M., Homeowner</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"I've used Swift Plumbing for multiple projects now. From simple faucet installations to complete bathroom remodels, they've always delivered excellent work. True professionals."</p>
+                <div class="testimonial-author">- James T., Property Manager</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Transparent pricing and no upselling - just honest, quality work. They diagnosed our water heater issue quickly and fixed it for a fair price. Will definitely call them again!"</p>
+                <div class="testimonial-author">- Maria L., Business Owner</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-section">
+            <h2>Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contact us today for a free estimate or emergency service</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <a href="tel:555-123-4567">(555) 123-4567</a>
+                    <span>Available 24/7</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <a href="mailto:info@swiftplumbing.com">info@swiftplumbing.com</a>
+                    <span>We'll respond quickly</span>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="mailto:info@swiftplumbing.com" class="btn-primary">Request a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">Swift Plumbing Solutions</p>
+            <p style="margin-bottom: 1rem;">Licensed, Bonded & Insured | License #123456</p>
+            <p>© 2026 Swift Plumbing Solutions. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Serving the community with pride for over 15 years</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
